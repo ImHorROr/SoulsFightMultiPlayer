@@ -8,6 +8,12 @@ public class Unit : NetworkBehaviour
 {
     [SerializeField] UnityEvent onSelected;
     [SerializeField] UnityEvent onDeselected;
+    [SerializeField] UnitMovement unitMovement;
+
+    public UnitMovement GetUnitMovement()
+    {
+        return unitMovement;
+    }
 
 
     [Client]

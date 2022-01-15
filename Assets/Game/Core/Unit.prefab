@@ -238,9 +238,9 @@ MonoBehaviour:
   onSelected:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7341733506628049047}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
+      - m_Target: {fileID: 2356348755535395668}
+        m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+        m_MethodName: set_enabled
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -253,9 +253,9 @@ MonoBehaviour:
   onDeselected:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7341733506628049047}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
+      - m_Target: {fileID: 2356348755535395668}
+        m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+        m_MethodName: set_enabled
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -265,6 +265,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  unitMovement: {fileID: 7734444494201902177}
 --- !u!65 &602084787004581792
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -335,17 +336,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7514759397622347546, guid: 7c3a1b2e6c19a0640a6acea6467d467a, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c3a1b2e6c19a0640a6acea6467d467a, type: 3}
---- !u!1 &7341733506628049047 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3249827445887849689, guid: 7c3a1b2e6c19a0640a6acea6467d467a, type: 3}
-  m_PrefabInstance: {fileID: 5258699606322056270}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6720789735015501921 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1567162277417770031, guid: 7c3a1b2e6c19a0640a6acea6467d467a, type: 3}
+  m_PrefabInstance: {fileID: 5258699606322056270}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &2356348755535395668 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 7514759397622347546, guid: 7c3a1b2e6c19a0640a6acea6467d467a, type: 3}
   m_PrefabInstance: {fileID: 5258699606322056270}
   m_PrefabAsset: {fileID: 0}
