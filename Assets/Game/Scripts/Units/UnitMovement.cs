@@ -1,14 +1,10 @@
-using Mirror;
-using System.Collections;
-using System.Collections.Generic;
+﻿using Mirror;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.InputSystem;
 
 public class UnitMovement : NetworkBehaviour
 {
     [SerializeField] private NavMeshAgent agent = null;
-
 
     #region Server
 
@@ -21,5 +17,4 @@ public class UnitMovement : NetworkBehaviour
     }
 
     #endregion
-
 }

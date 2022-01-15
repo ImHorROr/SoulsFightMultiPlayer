@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 167676785102838744}
   - component: {fileID: 6576174303514184878}
   - component: {fileID: 8130650808076843324}
-  - component: {fileID: 2108983963035883407}
+  - component: {fileID: 4319519190967600646}
   m_Layer: 0
   m_Name: UnitSpawner
   m_TagString: Untagged
@@ -65,7 +65,7 @@ MonoBehaviour:
   visible: 0
   m_AssetId: 2f0666a321439674d946005959486757
   hasSpawned: 0
---- !u!114 &2108983963035883407
+--- !u!114 &4319519190967600646
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -74,13 +74,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 5165193745040580999}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c137137f4b0a8346906154180b13863, type: 3}
+  m_Script: {fileID: 11500000, guid: 46b5811145bf3ce44a39b8e9c6977a61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
   unitPrefab: {fileID: 5040534375429903541, guid: 5e8c68da6dd973746b04ee1fafe92d20, type: 3}
-  unitSpwanLocation: {fileID: 2206352742363894615}
+  unitSpawnPoint: {fileID: 2206352742363894615}
 --- !u!1 &7187117397600785936
 GameObject:
   m_ObjectHideFlags: 0
@@ -140,8 +140,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
-  - {fileID: 2100000, guid: 5cb39e63df7b0b14783779ad217849e0, type: 2}
+  - {fileID: 2100000, guid: 8cb4d6fee77fd4ee6895f08b240d625f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

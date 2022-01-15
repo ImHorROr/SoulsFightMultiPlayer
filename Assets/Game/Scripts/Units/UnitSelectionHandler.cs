@@ -1,14 +1,17 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class UnitSelectionHandeler : MonoBehaviour
+public class UnitSelectionHandler : MonoBehaviour
 {
-    [SerializeField] LayerMask layerMask = new LayerMask();
-    Camera mainCamera;
+    [SerializeField] private LayerMask layerMask = new LayerMask();
+
+    private Camera mainCamera;
+
     public List<Unit> SelectedUnits { get; } = new List<Unit>();
+
     private void Start()
     {
         mainCamera = Camera.main;
