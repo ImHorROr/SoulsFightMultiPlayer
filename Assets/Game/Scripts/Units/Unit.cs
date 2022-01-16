@@ -7,41 +7,65 @@ using UnityEngine.Events;
 
 public class Unit : NetworkBehaviour
 {
+    [SerializeField] private Health health = null;
     [SerializeField] private UnitMovement unitMovement = null;
+    [SerializeField] private Targeter targeter = null;
     [SerializeField] private UnityEvent onSelected = null;
     [SerializeField] private UnityEvent onDeselected = null;
-    [SerializeField] private Targeter targeter = null;
 
-    public static event Action<Unit> serverOnUnitSpanwed; 
-    public static event Action<Unit> serverOnUnitDespanwed; 
-    public static event Action<Unit> AuthorityOnUnitSpawned; 
+    public static event Action<Unit> ServerOnUnitSpawned;
+    public static event Action<Unit> ServerOnUnitDespawned;
+
+    public static event Action<Unit> AuthorityOnUnitSpawned;
     public static event Action<Unit> AuthorityOnUnitDespawned;
-
 
     public UnitMovement GetUnitMovement()
     {
         return unitMovement;
     }
+
     public Targeter GetTargeter()
     {
         return targeter;
     }
 
+    #region Server
 
-    #region server
     public override void OnStartServer()
     {
-        serverOnUnitSpanwed?.Invoke(this);
+        ServerOnUnitSpawned?.Invoke(this);
+
+        health.serverOnDie += ServerHandleDie;
     }
 
     public override void OnStopServer()
     {
-        serverOnUnitDespanwed?.Invoke(this);
+        health.serverOnDie -= ServerHandleDie;
+
+        ServerOnUnitDespawned?.Invoke(this);
+    }
+
+    [Server]
+    private void ServerHandleDie()
+    {
+        NetworkServer.Destroy(gameObject);
     }
 
     #endregion
 
     #region Client
+
+    public override void OnStartAuthority()
+    {
+        AuthorityOnUnitSpawned?.Invoke(this);
+    }
+
+    public override void OnStopClient()
+    {
+        if (!hasAuthority) { return; }
+
+        AuthorityOnUnitDespawned?.Invoke(this);
+    }
 
     [Client]
     public void Select()
@@ -57,20 +81,6 @@ public class Unit : NetworkBehaviour
         if (!hasAuthority) { return; }
 
         onDeselected?.Invoke();
-    }
-
-    public override void OnStartClient()
-    {
-        if (!isClientOnly || !hasAuthority) { return; }
-
-        AuthorityOnUnitSpawned?.Invoke(this);
-    }
-
-    public override void OnStopClient()
-    {
-        if (!isClientOnly || !hasAuthority) { return; }
-
-        AuthorityOnUnitDespawned?.Invoke(this);
     }
 
     #endregion
