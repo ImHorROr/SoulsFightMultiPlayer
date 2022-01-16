@@ -53,6 +53,10 @@ public class RTSPlayer : NetworkBehaviour
         Unit.AuthorityOnUnitSpawned -= AuthorityHandleUnitSpawned;
         Unit.AuthorityOnUnitDespawned -= AuthorityHandleUnitDespawned;
     }
+    public List<Unit> GetMyUnits()
+    {
+        return myUnits;
+    }
 
     private void AuthorityHandleUnitSpawned(Unit unit)
     {
@@ -67,6 +71,7 @@ public class RTSPlayer : NetworkBehaviour
 
         myUnits.Remove(unit);
     }
+
 
     #endregion
 }

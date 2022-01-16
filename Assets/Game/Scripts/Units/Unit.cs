@@ -10,6 +10,7 @@ public class Unit : NetworkBehaviour
     [SerializeField] private UnitMovement unitMovement = null;
     [SerializeField] private UnityEvent onSelected = null;
     [SerializeField] private UnityEvent onDeselected = null;
+    [SerializeField] private Targeter targeter = null;
 
     public static event Action<Unit> serverOnUnitSpanwed; 
     public static event Action<Unit> serverOnUnitDespanwed; 
@@ -21,6 +22,11 @@ public class Unit : NetworkBehaviour
     {
         return unitMovement;
     }
+    public Targeter GetTargeter()
+    {
+        return targeter;
+    }
+
 
     #region server
     public override void OnStartServer()
