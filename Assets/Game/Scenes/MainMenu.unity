@@ -174,22 +174,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6240841078719386947, guid: 8401712ccf21dcd4f8094ab3802a47e8, type: 3}
-      propertyPath: onlineScene
-      value: Assets/Game/Scenes/Map1.unity
-      objectReference: {fileID: 0}
-    - target: {fileID: 6240841078719386947, guid: 8401712ccf21dcd4f8094ab3802a47e8, type: 3}
-      propertyPath: offlineScene
-      value: Assets/Game/Scenes/MainMenu.unity
-      objectReference: {fileID: 0}
-    - target: {fileID: 6240841078719386947, guid: 8401712ccf21dcd4f8094ab3802a47e8, type: 3}
-      propertyPath: spawnPrefabs.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6240841078719386947, guid: 8401712ccf21dcd4f8094ab3802a47e8, type: 3}
-      propertyPath: spawnPrefabs.Array.data[2]
-      value: 
-      objectReference: {fileID: 3991909935619259373, guid: 03d998b2fb54ec7408bac134bda04b4d, type: 3}
     - target: {fileID: 6240841078719386948, guid: 8401712ccf21dcd4f8094ab3802a47e8, type: 3}
       propertyPath: m_Name
       value: NetworkManger
