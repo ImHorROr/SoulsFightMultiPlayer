@@ -1,4 +1,5 @@
 using Mirror;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,8 @@ using UnityEngine;
 public class GameOverHandeler : NetworkBehaviour
 {
     [SerializeField] private List<UnitBase> bases = new List<UnitBase>();
+    public static event Action<string> ClientOnGameOver;
+
 
     #region Server
 
@@ -25,7 +28,6 @@ public class GameOverHandeler : NetworkBehaviour
     private void ServerHandleBaseSpawned(UnitBase unitBase)
     {
         bases.Add(unitBase);
-        Debug.Log("spawn");
 
     }
 
@@ -33,13 +35,20 @@ public class GameOverHandeler : NetworkBehaviour
     private void ServerHandleBaseDespawned(UnitBase unitBase)
     {
         bases.Remove(unitBase);
-        Debug.Log("remove");
-
 
         if (bases.Count != 1) { return; }
+        int playerId = bases[0].connectionToClient.connectionId;
 
-        Debug.Log("Game Over");
+        RpcGameOver($"Player {playerId}");
+
     }
+
+    [ClientRpc]
+    private void RpcGameOver(string winner)
+    {
+        ClientOnGameOver?.Invoke(winner);
+    }
+
     #endregion
 
 }
