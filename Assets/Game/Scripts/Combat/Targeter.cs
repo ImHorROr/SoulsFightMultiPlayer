@@ -22,6 +22,18 @@ public class Targeter : NetworkBehaviour
     {
         target = null;
     }
+    public override void OnStartServer()
+    {
+        GameOverHandeler.serverOnGameOver += serverHandelOnGameOver;
+    }
 
-
+    public override void OnStopServer()
+    {
+        GameOverHandeler.serverOnGameOver -= serverHandelOnGameOver;
+    }
+    [Server]
+    void serverHandelOnGameOver()
+    {
+        ClearTargets();
+    }
 }

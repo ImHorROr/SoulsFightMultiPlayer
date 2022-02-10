@@ -14,6 +14,12 @@ public class UnitCommandGiver : MonoBehaviour
     private void Start()
     {
         mainCamera = Camera.main;
+        GameOverHandeler.clientOnGameOver += clientHandelOnGameOver;
+
+    }
+    private void OnDestroy()
+    {
+        GameOverHandeler.clientOnGameOver -= clientHandelOnGameOver;
     }
 
     private void Update()
@@ -51,4 +57,9 @@ public class UnitCommandGiver : MonoBehaviour
             unit.GetUnitMovement().CmdMove(point);
         }
     }
+    private void clientHandelOnGameOver(string winnerName)
+    {
+        enabled = false;
+    }
+
 }

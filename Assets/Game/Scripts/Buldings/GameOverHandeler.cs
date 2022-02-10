@@ -6,9 +6,10 @@ using UnityEngine;
 
 public class GameOverHandeler : NetworkBehaviour
 {
-    [SerializeField] private List<UnitBase> bases = new List<UnitBase>();
-    public static event Action<string> ClientOnGameOver;
+    public static event Action<string> clientOnGameOver;
+    public static event Action serverOnGameOver;
 
+    private List<UnitBase> bases = new List<UnitBase>();
 
     #region Server
 
@@ -28,7 +29,6 @@ public class GameOverHandeler : NetworkBehaviour
     private void ServerHandleBaseSpawned(UnitBase unitBase)
     {
         bases.Add(unitBase);
-
     }
 
     [Server]
@@ -37,18 +37,22 @@ public class GameOverHandeler : NetworkBehaviour
         bases.Remove(unitBase);
 
         if (bases.Count != 1) { return; }
-        int playerId = bases[0].connectionToClient.connectionId;
 
-        RpcGameOver($"Player {playerId}");
+        Debug.Log("Game Over");
 
-    }
-
-    [ClientRpc]
-    private void RpcGameOver(string winner)
-    {
-        ClientOnGameOver?.Invoke(winner);
+        int playerID = bases[0].connectionToClient.connectionId;
+        RpcGameOver($"{playerID}");
+        serverOnGameOver?.Invoke();
     }
 
     #endregion
 
+    #region Client
+
+    [ClientRpc]
+    void RpcGameOver(string winner)
+    {
+        clientOnGameOver?.Invoke(winner);
+    }
+    #endregion
 }

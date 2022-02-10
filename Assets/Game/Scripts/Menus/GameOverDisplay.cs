@@ -6,17 +6,17 @@ using UnityEngine;
 
 public class GameOverDisplay : MonoBehaviour
 {
-    [SerializeField] private GameObject gameOverDisplayParent = null;
-    [SerializeField] private TMP_Text winnerNameText = null;
+    [SerializeField] GameObject gameOverDisplayParent = null;
+    [SerializeField] TMP_Text winnerNameText = null;
 
     private void Start()
     {
-        GameOverHandeler.ClientOnGameOver += ClientHandleGameOver;
+     GameOverHandeler.clientOnGameOver += ClientHandleGameOver;
     }
 
     private void OnDestroy()
     {
-        GameOverHandeler.ClientOnGameOver -= ClientHandleGameOver;
+        GameOverHandeler.clientOnGameOver -= ClientHandleGameOver;
     }
 
     public void LeaveGame()
