@@ -161,7 +161,7 @@ GameObject:
   - component: {fileID: 2177882034606374497}
   - component: {fileID: 2154495872654988845}
   - component: {fileID: 2244022411658038751}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Unit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -304,7 +304,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
+  health: {fileID: 2154495872654988845}
   unitMovement: {fileID: 1400810625482927717}
+  targeter: {fileID: 7602255683133456838}
   onSelected:
     m_PersistentCalls:
       m_Calls:
@@ -335,8 +337,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  targeter: {fileID: 7602255683133456838}
-  health: {fileID: 2154495872654988845}
 --- !u!114 &1601124378809219418
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -509,13 +509,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: HealthbarCanves
       objectReference: {fileID: 0}
-    - target: {fileID: 1537011493465811163, guid: 0c55e78c9946a634ab6d99a97f484e08, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1567950098959641145, guid: 0c55e78c9946a634ab6d99a97f484e08, type: 3}
       propertyPath: m_Pivot.x
-      value: 0
+      value: 0.478
       objectReference: {fileID: 0}
     - target: {fileID: 1567950098959641145, guid: 0c55e78c9946a634ab6d99a97f484e08, type: 3}
       propertyPath: m_Pivot.y
@@ -579,7 +575,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1567950098959641145, guid: 0c55e78c9946a634ab6d99a97f484e08, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -0.478
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1567950098959641145, guid: 0c55e78c9946a634ab6d99a97f484e08, type: 3}
       propertyPath: m_AnchoredPosition.y

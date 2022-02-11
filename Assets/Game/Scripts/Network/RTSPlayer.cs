@@ -3,24 +3,34 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class RTSPlayer : NetworkBehaviour
 {
    [SerializeField]  List<Unit> myUnits = new List<Unit>();
+   [SerializeField]  List<Building> myBuildings = new List<Building>();
    
+    public List<Building> GetmyBuildings()
+    {
+        return myBuildings;
+    }
     #region server
     public override void OnStartServer()
     {
         base.OnStartServer();
         Unit.ServerOnUnitSpawned += ServerHandelUnitSpawned;
         Unit.ServerOnUnitDespawned += ServerHandelUnitDespawned;
+        Building.ServerOnBuildingSpawned += ServerHandelBuildingSpawned;
+        Building.ServerOnBuildingDespawned += ServerHandelBuildingDespawned;
+
     }
     public override void OnStopServer()
     {
         base.OnStopServer();
         Unit.ServerOnUnitSpawned -= ServerHandelUnitSpawned;
         Unit.ServerOnUnitDespawned -= ServerHandelUnitDespawned;
-
+        Building.ServerOnBuildingSpawned -= ServerHandelBuildingSpawned;
+        Building.ServerOnBuildingDespawned -= ServerHandelBuildingDespawned;
     }
 
     private void ServerHandelUnitSpawned(Unit unit)
@@ -34,6 +44,19 @@ public class RTSPlayer : NetworkBehaviour
         myUnits.Remove(unit);
 
     }
+    private void ServerHandelBuildingSpawned(Building building)
+    {
+        if (building.connectionToClient.connectionId != connectionToClient.connectionId) return;
+        myBuildings.Add(building);
+
+    }
+
+    private void ServerHandelBuildingDespawned(Building building)
+    {
+        if (building.connectionToClient.connectionId != connectionToClient.connectionId) return;
+        myBuildings.Remove(building);
+
+    }
     #endregion
 
     #region Client
@@ -44,7 +67,10 @@ public class RTSPlayer : NetworkBehaviour
 
         Unit.AuthorityOnUnitSpawned += AuthorityHandleUnitSpawned;
         Unit.AuthorityOnUnitDespawned += AuthorityHandleUnitDespawned;
+        Building.AuthorityOnBuildingSpawned += AuthorityHandleBuildingSpawned;
+    Building.AuthorityOnBuildingDespawned += AuthorityHandleBuildingDespawned;
     }
+
 
     public override void OnStopClient()
     {
@@ -52,12 +78,14 @@ public class RTSPlayer : NetworkBehaviour
 
         Unit.AuthorityOnUnitSpawned -= AuthorityHandleUnitSpawned;
         Unit.AuthorityOnUnitDespawned -= AuthorityHandleUnitDespawned;
+        Building.AuthorityOnBuildingSpawned -= AuthorityHandleBuildingSpawned;
+
+        Building.AuthorityOnBuildingDespawned -= AuthorityHandleBuildingDespawned;
     }
     public List<Unit> GetMyUnits()
     {
         return myUnits;
     }
-
     private void AuthorityHandleUnitSpawned(Unit unit)
     {
         myUnits.Add(unit);
@@ -68,7 +96,14 @@ public class RTSPlayer : NetworkBehaviour
         myUnits.Remove(unit);
     }
 
-
+    private void AuthorityHandleBuildingSpawned(Building building)
+    {
+        myBuildings.Add(building);
+    }
+    private void AuthorityHandleBuildingDespawned(Building building)
+    {
+        myBuildings.Remove(building);
+    }
     #endregion
 }
 
