@@ -63,6 +63,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
+  buildingBlockLayerMask:
+    serializedVersion: 2
+    m_Bits: 321
+  buildingRangeLimit: 5
   myUnits: []
   myBuildings: []
   buildings:

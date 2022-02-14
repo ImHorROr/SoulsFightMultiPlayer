@@ -57,10 +57,8 @@ public class UnitSpawner : NetworkBehaviour, IPointerClickHandler
         {
             return;
         }
-        GameObject unitInstance = Instantiate(
-    unitPrefab.gameObject,
-    unitSpawnPoint.position,
-    unitSpawnPoint.rotation);
+        GameObject unitInstance = Instantiate(unitPrefab.gameObject,unitSpawnPoint.position,unitSpawnPoint.rotation);
+
 
         NetworkServer.Spawn(unitInstance, connectionToClient);
         Vector3 spawnOffset = UnityEngine.Random.insideUnitSphere * spawnRange;

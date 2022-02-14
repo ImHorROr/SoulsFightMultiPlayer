@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 
 public class RTSPlayer : NetworkBehaviour
 {
+    [SerializeField] LayerMask buildingBlockLayerMask = new LayerMask();
+    [SerializeField] float buildingRangeLimit = 5;
    [SerializeField]  List<Unit> myUnits = new List<Unit>();
    [SerializeField]  List<Building> myBuildings = new List<Building>();
    [SerializeField]  Building[] buildings = new Building[0];
@@ -27,6 +29,24 @@ public class RTSPlayer : NetworkBehaviour
     public void SetResources(int newRes)
     {
         resources = newRes;
+    }
+
+    public bool CanPlaceBuilding(BoxCollider buildingCollider, Vector3 pos)
+    {
+        if (Physics.CheckBox(pos + buildingCollider.center, buildingCollider.size / 2, Quaternion.identity, buildingBlockLayerMask))
+        {
+            //overlaping
+            return false;
+        }
+
+        foreach (Building building1 in myBuildings)
+        {
+            if ((pos - building1.transform.position).sqrMagnitude <= buildingRangeLimit * buildingRangeLimit)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     #region server
@@ -61,9 +81,13 @@ public class RTSPlayer : NetworkBehaviour
         }
 
         if (buildingToPlace == null) return;
+        if (resources < buildingToPlace.GetPrice()) return;
+        BoxCollider collider = buildingToPlace.GetComponent<BoxCollider>();
 
+        if (!CanPlaceBuilding(collider, pos)) return;
         GameObject buildingInstance =  Instantiate(buildingToPlace.gameObject, pos, buildingToPlace.transform.rotation);
         NetworkServer.Spawn(buildingInstance, connectionToClient);
+        SetResources(resources - buildingToPlace.GetPrice());
 
     }
 
