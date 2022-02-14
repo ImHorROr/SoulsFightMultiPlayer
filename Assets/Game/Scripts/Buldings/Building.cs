@@ -55,5 +55,6 @@ public class Building : NetworkBehaviour
 
     }
 
+
     #endregion
 }
