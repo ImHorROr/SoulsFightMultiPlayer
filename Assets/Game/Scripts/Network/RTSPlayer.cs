@@ -12,10 +12,12 @@ public class RTSPlayer : NetworkBehaviour
    [SerializeField]  List<Unit> myUnits = new List<Unit>();
    [SerializeField]  List<Building> myBuildings = new List<Building>();
    [SerializeField]  Building[] buildings = new Building[0];
-
+    
     [SyncVar(hook =nameof(ClientHandleOnResourcesChange))]
     int resources = 100;
     public event Action<int> ClientOnResourcesChange;
+    Color teamColor = new Color();
+
 
     public List<Building> GetmyBuildings()
     {
@@ -66,6 +68,14 @@ public class RTSPlayer : NetworkBehaviour
         Unit.ServerOnUnitDespawned -= ServerHandelUnitDespawned;
         Building.ServerOnBuildingSpawned -= ServerHandelBuildingSpawned;
         Building.ServerOnBuildingDespawned -= ServerHandelBuildingDespawned;
+    }
+    public void SetTeamColor(Color newTeamColor)
+    {
+        teamColor = newTeamColor;
+    }
+    public Color GetTeamColor()
+    {
+        return teamColor;
     }
     [Command]
     public void CmdTryPlaceBuilding(int buildingID , Vector3 pos)
