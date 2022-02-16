@@ -16,7 +16,7 @@ public class RTSPlayer : NetworkBehaviour
     [SyncVar(hook =nameof(ClientHandleOnResourcesChange))]
     int resources = 100;
     public event Action<int> ClientOnResourcesChange;
-    Color teamColor = new Color();
+    private Color teamColor = new Color();
 
 
     public List<Building> GetmyBuildings()
@@ -69,6 +69,7 @@ public class RTSPlayer : NetworkBehaviour
         Building.ServerOnBuildingSpawned -= ServerHandelBuildingSpawned;
         Building.ServerOnBuildingDespawned -= ServerHandelBuildingDespawned;
     }
+    [Server]
     public void SetTeamColor(Color newTeamColor)
     {
         teamColor = newTeamColor;

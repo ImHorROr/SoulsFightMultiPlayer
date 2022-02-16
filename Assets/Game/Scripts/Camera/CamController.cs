@@ -12,7 +12,7 @@ public class CamController : NetworkBehaviour
     [SerializeField] private float screenBorderThickness = 10f;
     [SerializeField] private Vector2 screenXLimits = Vector2.zero;
     [SerializeField] private Vector2 screenZLimits = Vector2.zero;
-
+    
     private Vector2 previousInput;
 
     private Controls controls;

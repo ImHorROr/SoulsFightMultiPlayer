@@ -5,33 +5,32 @@ using Mirror;
 
 public class TeamColorSetter : NetworkBehaviour
 {
-    [SerializeField] Renderer[] colorRenderers = new Renderer[0];
-    [SyncVar (hook =nameof(HandleTeamColorUpdated))] Color teamColor = new Color();
+    [SerializeField] private Renderer[] colorRenderers = new Renderer[0];
 
+    [SyncVar(hook = nameof(HandleTeamColorUpdated))]
+    private Color teamColor = new Color();
 
-    #region server
+    #region Server
+
     public override void OnStartServer()
     {
         RTSPlayer player = connectionToClient.identity.GetComponent<RTSPlayer>();
-        teamColor = player.GetTeamColor();
-        print(teamColor);
-    }
 
+        teamColor = player.GetTeamColor();
+    }
 
     #endregion
 
-    #region client
+    #region Client
 
-    void HandleTeamColorUpdated(Color oldColor , Color newColor)
+    private void HandleTeamColorUpdated(Color oldColor, Color newColor)
     {
         foreach (Renderer renderer in colorRenderers)
         {
-            renderer.material.SetColor("_Color", newColor);
-            print(renderer + "changed to " + newColor);
-
+            
+            renderer.material.SetColor("_BaseColor", newColor);
         }
     }
-
 
     #endregion
 }
