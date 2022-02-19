@@ -793,7 +793,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 10
+  orthographic size: 100
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -912,7 +912,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1687258581}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!114 &1687258583
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1210,6 +1210,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1319038388, guid: 208528717ec7b834c8dbde71a777c83b, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 565.958
+      objectReference: {fileID: 0}
+    - target: {fileID: 1319038388, guid: 208528717ec7b834c8dbde71a777c83b, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 460.683
+      objectReference: {fileID: 0}
     - target: {fileID: 5047719324030906114, guid: 208528717ec7b834c8dbde71a777c83b, type: 3}
       propertyPath: m_Name
       value: MIniMapDisplay

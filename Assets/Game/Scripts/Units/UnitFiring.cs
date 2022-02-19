@@ -12,6 +12,7 @@ public class UnitFiring : NetworkBehaviour
     [SerializeField] float fireRange = 5f;
     [SerializeField] float fireRate = 1f;
     [SerializeField] float rotationSpeed = 100f;
+    [SerializeField] Animator animator;
 
     private float lastFireTime = 0;
 
@@ -20,6 +21,8 @@ public class UnitFiring : NetworkBehaviour
     {
         Targetable target = targeter.GetTarget();
         if (target == null) return;
+        animator.ResetTrigger("fire");
+
         if (!CanFireAtTarget()) return;
         Quaternion targetRotation = Quaternion.LookRotation(target.transform.position - transform.position);
 
@@ -30,6 +33,9 @@ public class UnitFiring : NetworkBehaviour
             Quaternion projectialRotation = Quaternion.LookRotation(target.GetAimAtPoint().position - projectileSpawnPoint.position) ;
             GameObject projectileInstance = Instantiate(projectilePrefab, projectileSpawnPoint.position, projectialRotation);
             NetworkServer.Spawn(projectileInstance, connectionToClient);
+            animator.ResetTrigger("walk");
+            animator.SetTrigger("fire");
+
             lastFireTime = Time.time;
         }
 

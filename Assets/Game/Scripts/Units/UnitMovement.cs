@@ -7,6 +7,8 @@ public class UnitMovement : NetworkBehaviour
     [SerializeField] private NavMeshAgent agent = null;
     [SerializeField] private Targeter targeter = null;
     [SerializeField] float chaseRange = 10f;
+    [SerializeField] Animator animator;
+
     #region Server
 
     [ServerCallback]
@@ -17,11 +19,14 @@ public class UnitMovement : NetworkBehaviour
         {
             if ((target.transform.position - transform.position).sqrMagnitude > chaseRange * chaseRange)
             {
-                agent.SetDestination(  target.transform.position);
+                agent.SetDestination(target.transform.position);
+                animator.SetTrigger("walk");
+
             }
             else if(agent.hasPath)
             {
                 agent.ResetPath();
+                animator.ResetTrigger("walk");
 
             }
 
@@ -40,7 +45,7 @@ public class UnitMovement : NetworkBehaviour
     {
         targeter.ClearTargets();
         if (!NavMesh.SamplePosition(position, out NavMeshHit hit, 1f, NavMesh.AllAreas)) { return; }
-
+        animator.SetTrigger("walk");
         agent.SetDestination(hit.position);
 
     }
