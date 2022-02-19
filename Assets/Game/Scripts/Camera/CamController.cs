@@ -12,9 +12,10 @@ public class CamController : NetworkBehaviour
     [SerializeField] private float screenBorderThickness = 10f;
     [SerializeField] private Vector2 screenXLimits = Vector2.zero;
     [SerializeField] private Vector2 screenZLimits = Vector2.zero;
-    
-    private Vector2 previousInput;
 
+    List<UnitBase> bases = new List<UnitBase>();
+    private Vector2 previousInput;
+    Vector3 basepos;
     private Controls controls;
 
     public override void OnStartAuthority()
@@ -25,10 +26,22 @@ public class CamController : NetworkBehaviour
 
         controls.Player.actionMoveCam.performed += SetPreviousInput;
         controls.Player.actionMoveCam.canceled += SetPreviousInput;
-
+        UnitBase.ServerOnBaseSpawned += EditCamPos;
         controls.Enable();
-    }
 
+    }
+    public void EditCamPos(UnitBase unitBases)
+    {
+        foreach (UnitBase unitBase in FindObjectsOfType<UnitBase>())
+        {
+            if (unitBase.hasAuthority)
+            {
+                basepos = unitBase.transform.position;
+                break;
+            }
+        }
+        playerCameraTransform.transform.position = new Vector3(basepos.x, 15, basepos.y);
+    }
     [ClientCallback]
     private void Update()
     {

@@ -68,12 +68,13 @@ MonoBehaviour:
   buildingBlockLayerMask:
     serializedVersion: 2
     m_Bits: 321
-  buildingRangeLimit: 5
+  buildingRangeLimit: 500
   myUnits: []
   myBuildings: []
   buildings:
   - {fileID: 3643911925718264493, guid: d5b441452ad5aec4ab1adab9778f9935, type: 3}
   - {fileID: 3643911925718264493, guid: b6df792ed1a73284c8ff708dbde4dae1, type: 3}
+  camTrans: {fileID: 8197255354780004708}
 --- !u!114 &5197847357380870429
 MonoBehaviour:
   m_ObjectHideFlags: 0
