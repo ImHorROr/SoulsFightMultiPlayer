@@ -20,22 +20,17 @@ public class UnitMovement : NetworkBehaviour
             if ((target.transform.position - transform.position).sqrMagnitude > chaseRange * chaseRange)
             {
                 agent.SetDestination(target.transform.position);
-                animator.SetTrigger("walk");
 
             }
             else if(agent.hasPath)
             {
                 agent.ResetPath();
-                animator.ResetTrigger("walk");
-
             }
-
-
-
             return;
         }
         if (!agent.hasPath) return;
         if (agent.remainingDistance > agent.stoppingDistance) return;
+        animator.ResetTrigger("walk");
         agent.ResetPath();
     }
 

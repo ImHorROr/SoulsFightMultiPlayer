@@ -21,7 +21,6 @@ public class UnitFiring : NetworkBehaviour
     {
         Targetable target = targeter.GetTarget();
         if (target == null) return;
-        animator.ResetTrigger("fire");
 
         if (!CanFireAtTarget()) return;
         Quaternion targetRotation = Quaternion.LookRotation(target.transform.position - transform.position);

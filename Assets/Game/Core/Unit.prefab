@@ -2741,6 +2741,7 @@ GameObject:
   - component: {fileID: 2154495872654988845}
   - component: {fileID: 2244022411658038751}
   - component: {fileID: 7450119035848049454}
+  - component: {fileID: 3574127851115979487}
   m_Layer: 8
   m_Name: Unit
   m_TagString: Untagged
@@ -3017,6 +3018,22 @@ MonoBehaviour:
   colorRenderers:
   - {fileID: 8246431725636754153}
   - {fileID: 2616563017299035462}
+--- !u!114 &3574127851115979487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5040534375429903541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f6f3bf89aa97405989c802ba270f815, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  clientAuthority: 0
+  animator: {fileID: 8246431725640952749}
 --- !u!1 &7341733506628049047
 GameObject:
   m_ObjectHideFlags: 0
@@ -5230,8 +5247,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8246431725647946377}
   - component: {fileID: 8246431725640952749}
-  - component: {fileID: 9111407474241800236}
-  - component: {fileID: 8816385904162266738}
   m_Layer: 0
   m_Name: Character_Tormented_Soul
   m_TagString: Untagged
@@ -5274,39 +5289,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &9111407474241800236
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8246431725648294551}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneId: 0
-  serverOnly: 0
-  visible: 0
-  m_AssetId: 5e8c68da6dd973746b04ee1fafe92d20
-  hasSpawned: 0
---- !u!114 &8816385904162266738
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8246431725648294551}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f6f3bf89aa97405989c802ba270f815, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.1
-  clientAuthority: 0
-  animator: {fileID: 8246431725640952749}
 --- !u!1 &8246431725648297403
 GameObject:
   m_ObjectHideFlags: 0
@@ -5926,13 +5908,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!224 &9082933067935218430 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 1567950098959641145, guid: 0c55e78c9946a634ab6d99a97f484e08, type: 3}
-  m_PrefabInstance: {fileID: 7768557412997025991}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &9123160356285495324 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1537011493465811163, guid: 0c55e78c9946a634ab6d99a97f484e08, type: 3}
+  m_PrefabInstance: {fileID: 7768557412997025991}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &9082933067935218430 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 1567950098959641145, guid: 0c55e78c9946a634ab6d99a97f484e08, type: 3}
   m_PrefabInstance: {fileID: 7768557412997025991}
   m_PrefabAsset: {fileID: 0}
