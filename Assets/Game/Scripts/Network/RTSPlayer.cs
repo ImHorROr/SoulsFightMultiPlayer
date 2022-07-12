@@ -108,6 +108,7 @@ public class RTSPlayer : NetworkBehaviour
         Building.ServerOnBuildingSpawned -= ServerHandelBuildingSpawned;
         Building.ServerOnBuildingDespawned -= ServerHandelBuildingDespawned;
     }
+
     [Server]
     public void SetTeamColor(Color newTeamColor)
     {
